@@ -81,4 +81,25 @@ This repo documents initial setup for raspberry pi needed for kernel development
 
     The downloaded headers will be located at /usr/src/linux-headers-`uname -r`
 
+## Setup ftrace
+
+    Use ftrace to Track Kernel Activity
+    ftrace is a powerful Linux kernel tracer that can be used to trace kernel function calls and monitor activities related to specific kernel modules or devices.
+
+    Enable Tracing:
+    You can use ftrace to monitor activities related to framebuffer devices. First, enable function tracing:
+
+
+    echo function > /sys/kernel/debug/tracing/current_tracer
+    Filter for Framebuffer Functions:
+    Add a filter for framebuffer-related functions. For example, if you’re interested in functions related to framebuffer handling:
+
+
+    echo 'fb_*' > /sys/kernel/debug/tracing/set_ftrace_filter
+    Start Tracing:
+    Start the tracer and observe the output:
+
+    cat /sys/kernel/debug/tracing/trace
+    This should provide insights into which functions are being called and might help you identify which module is using the framebuffer.
+
 
