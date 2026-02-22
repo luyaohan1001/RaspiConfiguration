@@ -1,5 +1,32 @@
 # RaspiConfiguration
 This repo documents initial setup for raspberry pi needed for kernel development
+## Without a monitor, the raspberry pi needs to be setup using files in bootfs.
+
+    Plug in the SD card to host machine, append to cmdline.txt with below:
+
+    ip=192.168.0.10::192.168.0.1:255.255.255.0:rpi:eth0:off
+
+    This sets the static IP address, router address, subnet mask, assigning to ethernet and disabling DHCP.
+
+    In bootfs, create an empty file
+
+    touch ssh
+
+    Also enable the default username pi, by creating userconf:
+
+    touch userconf.txt
+    pi:$6$c70VpvPsVNCG0YR5$l5vWWLsLko9Kj65gcQ8qvMkuOoRkEagI90qi3F/Y7rm8eNYZHW8CY6BOIKwMH7a3YYzZYL90zf304cAHLFaZE0
+
+    On the host, configure a static IP address within the same subnet, such as
+
+    192.168.0.11
+
+    Now ssh to this address with Ethernet cable connected
+
+    ssh pi@192.168.0.10 
+
+    raspberry // password
+
 
 ## Setup LAN between raspi and laptop.
 
